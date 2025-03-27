@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ProfileNavComponent } from '../components/profile-nav/profile-nav.component';
-import { AdminProfileComponent } from '../admin-profile/admin-profile.component';
+import { AdminProfileComponent } from '../admin/admin-profile/admin-profile.component';
 import { ChefProfileComponent } from '../chef-profile/chef-profile.component';
 import { AuthService } from '../services/auth.service';
 import { map, Observable } from 'rxjs';

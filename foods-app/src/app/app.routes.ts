@@ -9,8 +9,12 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
-import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
 import { ChefProfileComponent } from './chef-profile/chef-profile.component';
+import { IngredientsComponent } from './admin/ingredients/ingredients.component';
+import { MealsComponent } from './admin/meals/meals.component';
+import { FeedbackComponent } from './admin/feedback/feedback.component';
+import { adminRoutes } from './admin/admin.routes';
 
 export const routes: Routes = [
    { 
@@ -37,12 +41,8 @@ export const routes: Routes = [
   },
   
   // Role-specific routes
-  {
-    path: 'admin',
-    component: AdminProfileComponent,
-    canActivate: [AuthGuard, RoleGuard],
-    data: { expectedRole: 'Admin' }
-  },
+  
+  ...adminRoutes,
   {
     path: 'chef',
     component: ChefProfileComponent,

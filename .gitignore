@@ -1,0 +1,60 @@
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+/foods-app/dist
+/foods-app/tmp
+/foods-app/out-tsc
+/foods-app/bazel-out
+
+# Node
+/foods-app/node_modules
+/foods-app/npm-debug.log
+/foods-app/yarn-error.log
+
+# IDEs and editors
+/foods-app/.idea/
+/foods-app/.project
+/foods-app/.classpath
+/foods-app/.c9/
+/foods-app/*.launch
+/foods-app/.settings/
+/foods-app/*.sublime-workspace
+
+# Visual Studio Code
+/foods-app/.vscode/*
+!/foods-app/.vscode/settings.json
+!/foods-app/.vscode/tasks.json
+!/foods-app/.vscode/launch.json
+!/foods-app/.vscode/extensions.json
+/foods-app/.history/*
+
+# Miscellaneous
+/foods-app/.angular/cache
+/foods-app/.sass-cache/
+/foods-app/connect.lock
+/foods-app/coverage
+/foods-app/libpeerconnection.log
+/foods-app/testem.log
+/foods-app/typings
+
+# System files
+/foods-app/.DS_Store
+/foods-app/Thumbs.db
+
+
+# Express.js App (mailhog-express-app)
+/mailhog-express-app/node_modules
+
+# .NET Core (FoodsApi backend)
+/FoodsApi/bin/
+/FoodsApi/obj/
+/FoodsApi/.vs/
+/FoodsApi/.vscode/
+/FoodsApi/.idea/
+/FoodsApi/.userprefs
+/FoodsApi/.suo
+/FoodsApi/launchSettings.json
+/FoodsApi/appsettings.Development.json  # (Optional: Exclude if secrets are stored here)
+/FoodsApi/appsettings.local.json        # (Common for local overrides)
+/FoodsApi/packages/                     # (NuGet packages, if restored locally)
+/FoodsApi/**/__pycache__/               # (Python cache, if applicable)

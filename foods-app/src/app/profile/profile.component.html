@@ -1,0 +1,19 @@
+<app-profile-nav></app-profile-nav>
+<div class="profile-content">
+  <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
+  
+  <ng-container *ngIf="userRole$ | async as role">
+    <!-- Admin Content -->
+    <app-admin-profile *ngIf="role === 'Admin'"></app-admin-profile>
+    
+    <!-- Chef Content -->
+    <app-chef-profile *ngIf="role === 'Chef'"></app-chef-profile>
+    
+    <!-- Default Client Content -->
+    <div *ngIf="role === 'Client'">
+      <h2>User Profile</h2>
+      <p>Your personal profile information</p>
+      <!-- Existing client content here -->
+    </div>
+  </ng-container>
+</div>

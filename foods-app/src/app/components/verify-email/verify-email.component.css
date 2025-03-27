@@ -1,0 +1,106 @@
+.verify-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.verify-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-weight: 500;
+  color: #333;
+}
+
+.readonly-input {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f5f5f5;
+  color: #666;
+}
+
+.code-input {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.verify-button {
+  padding: 0.75rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.verify-button:hover {
+  background: #0069d9;
+}
+
+.resend-section {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.resend-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+
+.resend-button:disabled {
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.no-email-warning {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #666;
+  text-align: center;
+}
+
+.error-message {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  color: #721c24;
+}
+/* Add to your existing styles */
+.success-message {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  color: #155724;
+  text-align: center;
+}
+
+.verify-button:disabled,
+.resend-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

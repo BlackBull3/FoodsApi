@@ -1,0 +1,17 @@
+.profile-nav {
+  padding: 0 16px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+/* Optional: Add some hover effects */
+.mat-icon-button:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}

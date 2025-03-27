@@ -1,0 +1,37 @@
+<div class="verify-container">
+  <h2>Verify Email</h2>
+  
+  <form (ngSubmit)="onSubmit()" class="verify-form">
+    <div *ngIf="showEmail" class="form-group">
+      <label>Email</label>
+      <input type="text" [value]="email" readonly class="readonly-input">
+    </div>
+    
+    <div class="form-group">
+      <label>Verification Code</label>
+      <input type="text" [(ngModel)]="code" name="code" required class="code-input">
+    </div>
+    
+    <button type="submit" class="verify-button" [disabled]="isLoading">
+      {{ isLoading ? 'Verifying...' : 'Verify' }}
+    </button>
+  </form>
+
+  <div *ngIf="email" class="resend-section">
+    <button (click)="resendCode()" [disabled]="!canResend || isLoading" class="resend-button">
+      {{ isLoading ? 'Sending...' : 'Resend Code' }} {{ countdown > 0 ? '(' + countdown + 's)' : '' }}
+    </button>
+  </div>
+  
+  <div *ngIf="!email" class="no-email-warning">
+    Cannot resend code - no registration data available
+  </div>
+  
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+  
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+</div>

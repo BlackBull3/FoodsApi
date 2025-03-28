@@ -12,12 +12,13 @@ export class MealService {
 
   constructor(private http: HttpClient) {}
 
-  getMeals(): Observable<MealResponseDTO[]> {
-    return this.http.get<MealResponseDTO[]>(this.apiUrl).pipe(
-      map(data => data ?? []), // Convert null to empty array
-      catchError(() => of([])) // Return empty array on error
-    );
-  } 
+  // meal.service.ts
+getMeals(): Observable<MealResponseDTO[]> {
+  return this.http.get<MealResponseDTO[]>(this.apiUrl).pipe(
+    map(data => data || []), // Convert null/undefined to empty array
+    catchError(() => of([])) // Return empty array on error
+  );
+}
 
   getMeal(id: number): Observable<MealResponseDTO> {
     return this.http.get<MealResponseDTO>(`${this.apiUrl}/${id}`);

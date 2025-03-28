@@ -12,12 +12,13 @@ export class IngredientService {
 
   constructor(private http: HttpClient) {}
 
-  getIngredients(): Observable<IngredientResponseDTO[]> {
-    return this.http.get<IngredientResponseDTO[]>(this.apiUrl).pipe(
-      map(data => data ?? []), // Convert null to empty array
-      catchError(() => of([])) // Return empty array on error
-    );
-  }
+  // ingredient.service.ts
+getIngredients(): Observable<IngredientResponseDTO[]> {
+  return this.http.get<IngredientResponseDTO[]>(this.apiUrl).pipe(
+    map(data => data || []), // Convert null/undefined to empty array
+    catchError(() => of([])) // Return empty array on error
+  );
+}
 
   createIngredient(dto: IngredientCreateDTO): Observable<IngredientResponseDTO> {
     return this.http.post<IngredientResponseDTO>(this.apiUrl, dto);

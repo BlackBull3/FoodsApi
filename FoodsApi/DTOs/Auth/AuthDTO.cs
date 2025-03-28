@@ -66,4 +66,13 @@ public class EmailOnlyDTO
         public string Email { get; set; }
         public string Role { get; set; }
     }
+
+    
+// Add this DTO to your Auth DTOs file
+public class UserDTO
+{
+    public string Email { get; set; }
+    public string Role { get; set; }
+    public bool IsVerified { get; set; }
+}
 }

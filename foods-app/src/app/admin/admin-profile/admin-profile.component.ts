@@ -5,11 +5,13 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { ProfileNavComponent } from '../../components/profile-nav/profile-nav.component';
 
 @Component({
   selector: 'app-admin-profile',
   standalone: true,
   imports: [
+    ProfileNavComponent,
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
@@ -18,24 +20,28 @@ import { RouterModule, RouterOutlet } from '@angular/router';
     RouterOutlet
   ],
   template: `
+  <app-profile-nav></app-profile-nav>
+
     <div class="admin-container">
-      <mat-toolbar color="primary">
-        <span>Admin Console</span>
-      </mat-toolbar>
+   
+    
 
       <div class="admin-content">
         <mat-sidenav-container>
           <mat-sidenav mode="side" opened>
             <mat-nav-list>
-              <a mat-list-item routerLink="ingredients" routerLinkActive="active">
+              <a mat-list-item routerLink="/admin/ingredients" routerLinkActive="active">
                 <mat-icon>kitchen</mat-icon> Ingredients
               </a>
-              <a mat-list-item routerLink="meals" routerLinkActive="active">
+              <a mat-list-item routerLink="/admin/meals" routerLinkActive="active">
                 <mat-icon>restaurant</mat-icon> Meals
               </a>
-              <a mat-list-item routerLink="feedback" routerLinkActive="active">
+              <a mat-list-item routerLink="/admin/feedback" routerLinkActive="active">
                 <mat-icon>feedback</mat-icon> Feedback
               </a>
+<a mat-list-item routerLink="/admin/users" routerLinkActive="active">
+  <mat-icon>people</mat-icon> Users
+</a>
             </mat-nav-list>
           </mat-sidenav>
 

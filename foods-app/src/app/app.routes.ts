@@ -15,9 +15,11 @@ import { IngredientsComponent } from './admin/ingredients/ingredients.component'
 import { MealsComponent } from './admin/meals/meals.component';
 import { FeedbackComponent } from './admin/feedback/feedback.component';
 import { adminRoutes } from './admin/admin.routes';
+import { AuthService } from './services/auth.service';
+import { inject } from '@angular/core';
 
 export const routes: Routes = [
-   { 
+  { 
     path: '', 
     component: HomeComponent,  
   },
@@ -40,9 +42,15 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
   
-  // Role-specific routes
+  // Admin routes
+  {
+    path: 'admin',
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'Admin' },
+    children: adminRoutes
+  },
   
-  ...adminRoutes,
+  // Chef route
   {
     path: 'chef',
     component: ChefProfileComponent,
@@ -53,14 +61,6 @@ export const routes: Routes = [
   // System routes
   { path: 'unauthorized', component: UnauthorizedComponent },
   
-  // Default route - redirects based on auth status
-  { 
-    path: '', 
-    canActivate: [AuthGuard],
-    data: { redirectToProfile: true },
-    children: [] // Empty children just to trigger the guard
-  },
-  
-  // Fallback route (should be last)
-  { path: '**', redirectTo: '/home' }
-]
+  // Fallback route
+  { path: '**', redirectTo: '' }
+];

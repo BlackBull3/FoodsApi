@@ -6,6 +6,7 @@ import { AdminProfileComponent } from '../admin/admin-profile/admin-profile.comp
 import { ChefProfileComponent } from '../chef-profile/chef-profile.component';
 import { AuthService } from '../services/auth.service';
 import { map, Observable } from 'rxjs';
+import { ClientMenuComponent } from '../client-menu/client-menu.component';
 
 @Component({
   standalone: true,
@@ -14,14 +15,15 @@ import { map, Observable } from 'rxjs';
     CommonModule, 
     ProfileNavComponent,
     AdminProfileComponent,
-    ChefProfileComponent
+    ChefProfileComponent,
+    ClientMenuComponent
   ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
   successMessage = '';
-  userRole$!: Observable<string>; // Add definite assignment assertion
+  userRole$!: Observable<string>;
 
   constructor(
     private router: Router,
@@ -34,7 +36,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.userRole$ = this.authService.validateToken().pipe(
       map(response => {
-        console.log('User role:', response.role); // Add this line
+        console.log('User role:', response.role);
+        // Redirect admin users to admin dashboard
+        if (response.role === 'Admin') {
+          this.router.navigate(['/admin']);
+        } else if (response.role === 'Chef') {
+          this.router.navigate(['/chef']);
+        }
         return response.role;
       })
     );

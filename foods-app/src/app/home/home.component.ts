@@ -42,14 +42,20 @@ export class HomeComponent implements OnInit {
     ).subscribe(response => {
       this.isLoading = false;
       if (response?.isValid) {
-        this.router.navigate(['/profile']);
+        if (response.role === 'Admin') {
+          this.router.navigate(['/admin']);
+        } else if (response.role === 'Chef') {
+          this.router.navigate(['/chef']);
+        } else {
+          this.router.navigate(['/profile']);
+        }
       }
     });
   }
 
   onLoginSuccess() {
     this.showLogin = false;
-    this.router.navigate(['/profile']);
+    // The actual navigation is now handled in LoginComponent
   }
 
   navigateToRegister() {

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LoginRequest, ApiErrorResponse } from '../../models/auth.dtos';
@@ -30,7 +30,20 @@ export class LoginComponent {
       next: (res) => {
         localStorage.setItem('token', res.token);
         this.success.emit();
-        this.router.navigate(['/profile']);
+        
+        // Redirect based on role
+        this.authService.validateToken().subscribe({
+          next: (response) => {
+            if (response.role === 'Admin') {
+              this.router.navigate(['/admin']);
+            } else if (response.role === 'Chef') {
+              this.router.navigate(['/chef']);
+            } else {
+              this.router.navigate(['/profile']);
+            }
+          },
+          error: () => this.router.navigate(['/profile'])
+        });
       },
       error: (err: ApiErrorResponse) => {
         this.errorMessage = err.detail || 'Login failed. Please try again.';

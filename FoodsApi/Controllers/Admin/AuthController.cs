@@ -357,5 +357,45 @@ public ActionResult<ValidateTokenResponseDTO> ValidateToken()
             // Logout is handled on the client side by discarding the token
             return Ok("Logged out successfully.");
         }
+    
+    
+    
+    // Get all users (Admin only)
+[HttpGet("users")]
+[Authorize(Roles = "Admin")]
+public async Task<ActionResult<IEnumerable<UserDTO>>> GetUsers()
+{
+    var users = await _context.Users
+        .Include(u => u.Role)
+        .Select(u => new UserDTO
+        {
+            Email = u.Email,
+            Role = u.Role.Name,
+            IsVerified = u.IsVerified
+        })
+        .ToListAsync();
+
+    return Ok(users);
+}
+
+// Delete user (Admin only)
+[HttpDelete("users/{email}")]
+[Authorize(Roles = "Admin")]
+public async Task<ActionResult> DeleteUser(string email)
+{
+    var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+    if (user == null)
+    {
+        return NotFound("User not found.");
+    }
+
+    _context.Users.Remove(user);
+    await _context.SaveChangesAsync();
+
+    return Ok("User deleted successfully.");
+}
+
+    
+    
     }
 }

@@ -1,4 +1,4 @@
-.ingredients-container {
+.users-container {
     padding: 20px;
   
     .header {
@@ -15,4 +15,13 @@
         display: flex;
         gap: 10px;
       }
-    }}
+    }
+  
+    .table-container {
+      overflow-x: auto;
+    }
+  
+    table {
+      width: 100%;
+    }
+  }

@@ -1,1 +1,51 @@
-<p>chef-profile works!</p>
+<!-- chef-profile.component.html -->
+<app-profile-nav></app-profile-nav>
+<h3 class="header">Kitchen Orders</h3>
+
+<div class="chef-container">
+
+  @if (isLoading) {
+    <mat-spinner class="spinner" diameter="50"></mat-spinner>
+  } @else if (orders.length === 0) {
+    <div class="empty-state">
+      <mat-icon>check_circle</mat-icon>
+      <p>All orders are completed</p>
+    </div>
+  } @else {
+    <div class="orders-grid">
+      @for (order of orders; track order.id) {
+        <mat-card class="order-card">
+          <mat-card-header>
+            <mat-card-title>Order #{{ order.id }}</mat-card-title>
+            <mat-card-subtitle>
+              {{ order.createdAt | date:'medium' }}
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <h3>{{ order.meal.name }}</h3>
+            <mat-list dense>
+              @for (ingredient of order.meal.ingredients; track ingredient.id) {
+                <mat-list-item>
+                  <mat-icon matListItemIcon>local_dining</mat-icon>
+                  <div matListItemTitle>{{ ingredient.name }}</div>
+                </mat-list-item>
+              }
+            </mat-list>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <mat-form-field appearance="outline">
+              <mat-label>Status</mat-label>
+              <mat-select [(ngModel)]="order.status" (selectionChange)="onStatusChange(order)">
+                @for (status of statusOptions; track status) {
+                  <mat-option [value]="status">{{ status }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+  }
+</div>

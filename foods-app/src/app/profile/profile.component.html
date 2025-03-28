@@ -1,4 +1,3 @@
-<app-profile-nav></app-profile-nav>
 <div class="profile-content">
   <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
   
@@ -11,8 +10,9 @@
     
     <!-- Default Client Content -->
     <div *ngIf="role === 'Client'">
-      <h2>User Profile</h2>
-      <p>Your personal profile information</p>
+      <app-profile-nav></app-profile-nav>
+   
+      <app-client-menu></app-client-menu>
       <!-- Existing client content here -->
     </div>
   </ng-container>

@@ -7,6 +7,7 @@ using FoodsApi.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace FoodsApi.Controllers.Client
 {
@@ -84,4 +85,22 @@ public async Task<ActionResult<OrderResponseDTO>> PlaceOrder(OrderCreateDTO dto)
         
         return Ok();
     }
+
+// Add this to your existing MenuController
+[HttpGet("orders")]
+[Authorize(Roles = "Client")]
+public async Task<ActionResult<IEnumerable<OrderResponseDTO>>> GetClientOrders()
+{
+
+ var orders = await _context.Orders
+            .Include(o => o.Meal)
+            .ThenInclude(m => m.Ingredients)
+            .OrderByDescending(o => o.CreatedAt)
+            .ToListAsync();
+
+
+    return _mapper.Map<List<OrderResponseDTO>>(orders);
+}
+// Helper method to get current user ID
+
 }}

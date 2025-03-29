@@ -11,11 +11,6 @@ A full-stack restaurant management system built with:
 
 For comprehensive documentation, including setup guides, API references, and architecture details, visit the project's **[GitHub Wiki](https://github.com/BlackBull3/FoodsApi/wiki)**.
 
-Key wiki sections:
-- [Getting Started Guide](https://github.com/BlackBull3/FoodsApi/wiki/Getting-Started)
-- [API Endpoint Reference](https://github.com/BlackBull3/FoodsApi/wiki/API-Documentation)
-- [Deployment Instructions](https://github.com/BlackBull3/FoodsApi/wiki/Deployment)
-
 ## 🚀 Quick Start
 
 # Start backend
